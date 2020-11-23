@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(CharacterController))]
 public class Player : MonoBehaviour
 {
+    [SerializeField]
+    private int _lives = 3;
     [SerializeField]
     private float _speed = 5.0f;
     [SerializeField]
@@ -18,6 +21,7 @@ public class Player : MonoBehaviour
     private bool _canDoubleJump;
     private int _playerCoins;
 
+    public int Lives { get { return _lives; } }
     public int PlayerCoins { get { return _playerCoins;  } }
 
     // Start is called before the first frame update
@@ -61,5 +65,13 @@ public class Player : MonoBehaviour
     public void AddCoin()
     {
         _playerCoins++;
+    }
+    public void Damage()
+    {
+        _lives--;
+        if (_lives == 0)
+        {
+            SceneManager.LoadScene(0);
+        }
     }
 }
