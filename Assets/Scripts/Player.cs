@@ -16,6 +16,9 @@ public class Player : MonoBehaviour
 
     private float _yVelocity;
     private bool _canDoubleJump;
+    private int _playerCoins;
+
+    public int PlayerCoins { get { return _playerCoins;  } }
 
     // Start is called before the first frame update
     void Start()
@@ -54,5 +57,9 @@ public class Player : MonoBehaviour
         velocity.y = _yVelocity;
 
         _controller.Move(velocity * Time.deltaTime);
+    }
+    public void AddCoin()
+    {
+        _playerCoins++;
     }
 }
